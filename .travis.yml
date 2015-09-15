@@ -4,3 +4,10 @@ jdk:
   - oraclejdk7
   - openjdk7
   - openjdk6
+before_install:
+ - wget -P ../ https://download.srcclr.com/console/srcclr-console-latest.zip
+ - unzip ../srcclr-console-latest.zip -d ../ && rm ../srcclr-console-latest.zip && mv ../srcclr-console-* ../srcclr
+
+after_success:
+ - echo -e '\ne4fbe422-e8fb-4d68-8d2d-714667cf59c6\n\n\n\nquit' | ../srcclr/srcclr
+ - ../srcclr/srcclr -e "scan --path $PWD"
